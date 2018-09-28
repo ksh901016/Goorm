@@ -15,8 +15,22 @@ public class E3 {
 	public static int getCoveredArea(Paper[] papers, int n)
 	{
 		int answer = 0; //색종이들이 덮은 영역의 총 넓이
-
-
+		
+		int[][] board = new int[100][100]; // 색종이의 정보 90보다 작거나 같은 두 자연수 (색종이의 변은 10인 정사각형)
+		
+		for(Paper paper : papers){
+			for(int i = paper.leftColumn; i<=paper.rightColumn; i++){
+				for(int j = paper.bottomRow; j<=paper.topRow; j++){
+					board[j][i] +=1;
+				}
+			}
+		}
+		
+		for(int row = 0; row < 100; row++){
+			for(int col = 0; col < 100; col++){
+				if(board[row][col] > 0) answer++;
+			}
+		}
 		
 		return answer;
 	}
